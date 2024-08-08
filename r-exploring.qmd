@@ -1,0 +1,50 @@
+---
+title: "Day 4 Afternoon activity"
+format: html
+editor: visual
+---
+
+```{r}
+# load libraries ----
+library(GGally)
+library(skimr)
+library(palmerpenguins)
+library(tidyverse)
+
+```
+
+```{r}
+# exploring our data penguins ----
+names(penguins)
+
+# look at the dimensions of the data frame ----
+dim(penguins)
+#this gives us the number of rows and columns 
+
+# summary of the df ----
+summary(penguins)
+
+# get a summary using the skimr package ----
+skimr::skim(penguins)
+# this summarizes the data in a bit more comprehensive way than summary() does 
+
+# head and tail ----
+head(penguins)
+tail(penguins)
+# prints out the first 6 rows and the last 6 rows 
+
+# pairsplot using GGally ----
+GGally::ggpairs(penguins)
+#plots every single variable against every variable. difficult to look at 
+
+# lets modify it to make it more useful 
+GGally::ggpairs(penguins, columns = 3:6, 
+               ggplot2::aes(color = species ))
+
+# create histogram of penguins flipper lengths ----
+ggplot(data = penguins, aes(x= flipper_length_mm, fill = species))+
+  geom_histogram()
+```
+
+
+
